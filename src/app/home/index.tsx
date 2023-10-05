@@ -4,18 +4,20 @@ import { Container, Heading, Hero, Preview, Text } from './styles'
 import Image from 'next/image'
 
 import calendar from '@/assets/app-preview.png'
+import ClaimUsernameForm from './components/ClaimUsernameForm'
 
 const Home = () => {
   return (
     <Container>
       <Hero>
-        <Heading size="4xl" className={'teste'}>
+        <Heading as="h1" size="4xl">
           Agendamento descomplicado
         </Heading>
         <Text size="lg">
           Conecte seu calendário e permita que as pessoas marquem agendamentos
           no seu tempo livre.
         </Text>
+        <ClaimUsernameForm />
       </Hero>
       <Preview>
         <Image

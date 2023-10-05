@@ -10,9 +10,9 @@ export const Container = styled.div`
   height: 100vh;
   overflow: hidden;
 `
-
 export const Heading = styled(HeadingStyled)`
   && {
+    font-size: ${(props) => props.theme['font-size']['7xl']};
     @media (max-width: 600px) {
       font-size: ${({ theme }) => theme['font-size']['6xl']};
     }
@@ -20,7 +20,7 @@ export const Heading = styled(HeadingStyled)`
 `
 export const Text = styled(TextSyled)`
   && {
-    margin-top: ${({ theme }) => theme.spacing['2']} !important;
+    margin-top: ${({ theme }) => theme.spacing['2']};
     color: ${({ theme }) => theme.colors.gray200};
   }
 `

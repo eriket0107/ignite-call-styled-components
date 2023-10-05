@@ -33,10 +33,11 @@ const theme = {
     ignite900: '#00291D',
   },
   borderRadius: {
-    none: '0',
-    sm: '0.125rem',
-    base: '0.25rem',
-    lg: '0.5rem',
+    px: '1px',
+    xs: '0.25rem',
+    sm: '0.375rem',
+    md: '0.5rem',
+    lg: '1rem',
     full: '99999px',
   },
   spacing: {
