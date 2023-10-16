@@ -32,7 +32,7 @@ const theme = {
     ignite700: '#015F43',
     ignite900: '#00291D',
   },
-  borderRadius: {
+  'border-radius': {
     px: '1px',
     xs: '0.25rem',
     sm: '0.375rem',

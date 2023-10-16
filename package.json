@@ -20,11 +20,14 @@
     "typescript-plugin-styled-components": "^3.0.0"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
     "@ignite-ui/react": "^2.2.4",
     "next": "13.4.19",
     "phosphor-react": "^1.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "^6.0.7"
+    "react-hook-form": "^7.47.0",
+    "styled-components": "^6.0.7",
+    "zod": "^3.22.4"
   }
 }

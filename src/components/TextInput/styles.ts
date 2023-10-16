@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 interface TextInputContainerVariants {
   size?: 'md' | 'sm'
@@ -6,7 +6,7 @@ interface TextInputContainerVariants {
 
 export const InputContainer = styled.div<TextInputContainerVariants>`
   background-color: ${(props) => props.theme.colors.gray900};
-  border-radius: ${(props) => props.theme.borderRadius.sm};
+  border-radius: ${(props) => props.theme['border-radius'].sm};
   box-sizing: border-box;
   border: 2px solid ${(props) => props.theme.colors.gray900};
   display: flex;
@@ -14,15 +14,15 @@ export const InputContainer = styled.div<TextInputContainerVariants>`
 
   ${(props) =>
     props.size === 'sm' &&
-    `
-    padding: ${props.theme.spacing['2']} ${props.theme.spacing['3']};
-  `}
+    css`
+      padding: ${props.theme.spacing['2']} ${props.theme.spacing['3']};
+    `}
 
   ${(props) =>
     props.size === 'md' &&
-    `
-    padding: ${props.theme.spacing['3']} ${props.theme.spacing['4']};
-  `}
+    css`
+      padding: ${props.theme.spacing['3']} ${props.theme.spacing['4']};
+    `}
 
   &:has(input:focus) {
     border-color: ${(props) => props.theme.colors.ignite300};
