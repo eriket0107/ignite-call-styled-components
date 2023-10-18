@@ -10,6 +10,7 @@ import { Button } from '@/components/Button'
 import { TextInput } from '@/components/TextInput'
 
 import { ArrowRight } from 'phosphor-react'
+import { useRouter } from 'next/navigation'
 
 const claimUsernameFormSchema = z.object({
   username: z
@@ -23,15 +24,18 @@ const claimUsernameFormSchema = z.object({
 type ClaimUsernameFormData = z.infer<typeof claimUsernameFormSchema>
 
 const ClaimUsernameForm = () => {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ClaimUsernameFormData>({
     resolver: zodResolver(claimUsernameFormSchema),
   })
   const handleClaimUsername = async (data: ClaimUsernameFormData) => {
-    console.log(data)
+    const { username } = data
+
+    await router.push(`/register?username=${username}`)
   }
 
   return (
@@ -44,7 +48,13 @@ const ClaimUsernameForm = () => {
             {...register('username')}
           />
         </TextInput.Container>
-        <Button size="md" variant={'primary'} type={'submit'}>
+        <Button
+          size="md"
+          variant="primary"
+          type="submit"
+          disabled={isSubmitting}
+          isLoading={isSubmitting}
+        >
           Reservar usuário
           <ArrowRight />
         </Button>

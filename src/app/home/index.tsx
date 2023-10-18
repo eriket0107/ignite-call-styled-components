@@ -1,4 +1,5 @@
 'use client'
+
 import { Container, Heading, Hero, Preview, Text } from './styles'
 
 import Image from 'next/image'

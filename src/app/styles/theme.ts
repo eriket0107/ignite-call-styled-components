@@ -31,6 +31,7 @@ const theme = {
     ignite500: '#00875F',
     ignite700: '#015F43',
     ignite900: '#00291D',
+    igniteError: '#f75a68',
   },
   'border-radius': {
     px: '1px',
@@ -56,6 +57,12 @@ const theme = {
     '40': '10rem',
     '64': '16rem',
     '80': '20rem',
+  },
+  'line-height': {
+    shorter: '125%',
+    short: '140%',
+    base: '160%',
+    tall: '180%',
   },
 }
 

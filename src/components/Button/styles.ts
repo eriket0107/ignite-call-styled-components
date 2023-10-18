@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components'
+import { CircleNotch } from 'phosphor-react'
 
 export interface ButtonPropsStyles {
-  variant: 'primary' | 'secondary' | 'tertiary'
-  size: 'sm' | 'md'
+  variant?: 'primary' | 'secondary' | 'tertiary'
+  size?: 'sm' | 'md'
 }
 
 export const ButtonVariant = styled.button<ButtonPropsStyles>`
@@ -46,6 +47,7 @@ export const ButtonVariant = styled.button<ButtonPropsStyles>`
 
       &:disabled {
         background-color: ${props.theme.colors.gray200};
+        cursor: not-allowed;
       }
     `}
 
@@ -80,4 +82,18 @@ ${(props) =>
         color: ${props.theme.colors.gray600};
       }
     `}
+`
+
+export const Loading = styled(CircleNotch)`
+  animation: rotate 1000ms linear infinite;
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
 `
