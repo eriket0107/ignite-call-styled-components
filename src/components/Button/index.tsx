@@ -3,7 +3,7 @@ import { ButtonVariant, Loading } from './styles'
 import { Check } from 'phosphor-react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'tertiary'
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'connected'
   size?: 'sm' | 'md'
   isLoading?: boolean
   isSubmitted?: boolean

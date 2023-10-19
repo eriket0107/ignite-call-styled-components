@@ -2,14 +2,14 @@ import styled, { css } from 'styled-components'
 import { CircleNotch } from 'phosphor-react'
 
 export interface ButtonPropsStyles {
-  variant?: 'primary' | 'secondary' | 'tertiary'
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'connected'
   size?: 'sm' | 'md'
 }
 
 export const ButtonVariant = styled.button<ButtonPropsStyles>`
   all: unset;
-  border-radius: ${(props) => props.theme['border-radius'].sm};
-  font-size: ${(props) => props.theme['font-size'].sm};
+  border-radius: ${(props) => props.theme.borderRadius.sm};
+  font-size: ${(props) => props.theme.fontSize.sm};
   text-align: center;
   min-width: 120px;
   box-sizing: border-box;
@@ -80,6 +80,22 @@ ${(props) =>
 
       &:disabled {
         color: ${props.theme.colors.gray600};
+      }
+    `}
+
+  ${(props) =>
+    props.variant === 'connected' &&
+    css`
+      color: ${props.theme.colors.white};
+      background: ${props.theme.colors.ignite500};
+
+      &:not(:disabled):hover {
+        background: ${props.theme.colors.ignite300};
+      }
+
+      &:disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
       }
     `}
 `

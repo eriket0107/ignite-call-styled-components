@@ -5,7 +5,7 @@ export const Form = styled(Box)`
   display: grid;
 
   background-color: ${(props) => props.theme.colors.gray800};
-  border-radius: ${(props) => props.theme['border-radius'].sm};
+  border-radius: ${(props) => props.theme.borderRadius.sm};
   grid-template-columns: 1fr auto;
   gap: ${(props) => props.theme.spacing[2]};
   margin-top: ${(props) => props.theme.spacing[4]};

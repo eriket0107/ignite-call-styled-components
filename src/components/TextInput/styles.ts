@@ -6,7 +6,7 @@ interface TextInputContainerVariants {
 
 export const InputContainer = styled.div<TextInputContainerVariants>`
   background-color: ${(props) => props.theme.colors.gray900};
-  border-radius: ${(props) => props.theme['border-radius'].sm};
+  border-radius: ${(props) => props.theme.borderRadius.sm};
   box-sizing: border-box;
   border: 2px solid ${(props) => props.theme.colors.gray900};
   display: flex;
@@ -35,7 +35,7 @@ export const InputContainer = styled.div<TextInputContainerVariants>`
 `
 
 export const PrefixContainer = styled.span`
-  font-size: ${(props) => props.theme['font-size'].sm};
+  font-size: ${(props) => props.theme.fontSize.sm};
   color: ${(props) => props.theme.colors.gray200};
   font-weight: regular;
 `

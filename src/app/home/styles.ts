@@ -12,16 +12,16 @@ export const Container = styled.div`
 `
 export const Heading = styled(HeadingStyled)`
   && {
-    font-size: ${(props) => props.theme['font-size']['7xl']};
+    font-size: ${(props) => props.theme.fontSize['7xl']};
     @media (max-width: 600px) {
-      font-size: ${({ theme }) => theme['font-size']['6xl']};
+      font-size: ${(props) => props.theme.fontSize['6xl']};
     }
   }
 `
 export const Text = styled(TextSyled)`
   && {
-    margin-top: ${({ theme }) => theme.spacing['2']};
-    color: ${({ theme }) => theme.colors.gray200};
+    margin-top: ${(props) => props.theme.spacing['2']};
+    color: ${(props) => props.theme.colors.gray200};
   }
 `
 
@@ -31,7 +31,7 @@ export const Hero = styled.div`
 `
 
 export const Preview = styled.div`
-  padding-right: ${({ theme }) => theme.spacing['8']};
+  padding-right: ${(props) => props.theme.spacing['8']};
   overflow: hidden;
   @media (max-width: 600px) {
     display: none;

@@ -1,5 +1,5 @@
 const theme = {
-  'font-size': {
+  fontSize: {
     xxs: '0.625rem',
     xs: '0.75rem',
     sm: '0.875rem',
@@ -33,7 +33,7 @@ const theme = {
     ignite900: '#00291D',
     igniteError: '#f75a68',
   },
-  'border-radius': {
+  borderRadius: {
     px: '1px',
     xs: '0.25rem',
     sm: '0.375rem',
@@ -58,7 +58,7 @@ const theme = {
     '64': '16rem',
     '80': '20rem',
   },
-  'line-height': {
+  lineHeight: {
     shorter: '125%',
     short: '140%',
     base: '160%',

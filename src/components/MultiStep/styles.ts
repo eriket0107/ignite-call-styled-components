@@ -16,17 +16,14 @@ export const Steps = styled.div<StepsProps>`
   gap: ${(props) => props.theme.spacing[2]};
   margin-top: ${(props) => props.theme.spacing[1]};
 `
-interface StepProps {
-  active: 'true' | 'false'
-}
 
-export const Step = styled.div<StepProps>`
+export const Step = styled.div<{ active: true | false }>`
   height: ${(props) => props.theme.spacing[1]};
-  border-radius: ${(props) => props.theme['border-radius'].px};
+  border-radius: ${(props) => props.theme.borderRadius.px};
   background-color: ${(props) => props.theme.colors.gray600};
 
   ${(props) =>
-    props.active === 'true' &&
+    props.active === true &&
     `
     background-color: ${props.theme.colors.gray100};
   `}

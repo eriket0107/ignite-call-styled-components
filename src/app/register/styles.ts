@@ -16,19 +16,19 @@ export const Container = styled.main`
 `
 
 interface HeadingProps {
-  size: keyof (typeof theme)['font-size']
+  size: keyof typeof theme.fontSize
 }
 
 export const Heading = styled(HeadingStyled)<HeadingProps>`
   && {
-    line-height: ${(props) => props.theme['line-height'].base};
-    font-size: ${(props) => props.theme['font-size'][props.size]};
+    line-height: ${(props) => props.theme.lineHeight.base};
+    font-size: ${(props) => props.theme.fontSize[props.size]};
   }
 `
 
 export const Text = styled(TextStyled)`
   && {
-    line-height: ${(props) => props.theme['line-height'].base};
+    line-height: ${(props) => props.theme.lineHeight.base};
     color: ${(props) => props.theme.colors.gray200};
     margin-bottom: ${(props) => props.theme.spacing[6]};
   }
@@ -47,7 +47,7 @@ export const Form = styled(Box)`
   flex-direction: column;
 
   background-color: ${(props) => props.theme.colors.gray800};
-  border-radius: ${(props) => props.theme['border-radius'].sm};
+  border-radius: ${(props) => props.theme.borderRadius.sm};
   gap: ${(props) => props.theme.spacing[4]};
   margin-top: ${(props) => props.theme.spacing[6]};
   padding: ${(props) => props.theme.spacing[6]};
