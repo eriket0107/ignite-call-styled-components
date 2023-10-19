@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -45,7 +45,7 @@ const Register = () => {
   const searchParams = useSearchParams()
   const search = searchParams.get('username')
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState<boolean>(false)
-
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -66,7 +66,9 @@ const Register = () => {
         name: data.name,
         username: data.username,
       })
+
       setIsSubmitSuccessful(true)
+      router.push('/register/connect-calendar')
     } catch (err) {
       if (err instanceof AxiosError && err?.response?.data?.message) {
         alert(err?.response?.data?.message)
