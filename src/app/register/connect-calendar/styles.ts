@@ -1,5 +1,5 @@
-import { Box } from '@ignite-ui/react'
 import styled from 'styled-components'
+import { Box, Text as TextStyled } from '@ignite-ui/react'
 import { Text } from '../styles'
 
 export const ConnectBox = styled(Box)`
@@ -23,4 +23,8 @@ export const ConnectItem = styled.div`
   > ${Text} {
     margin-bottom: 0;
   }
+`
+
+export const AuthError = styled(TextStyled)`
+  color: ${(props) => props.theme.colors.igniteError};
 `

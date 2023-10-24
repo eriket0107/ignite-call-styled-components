@@ -1,5 +1,5 @@
 import { Text } from '@ignite-ui/react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 export const MultiStepContainer = styled.div``
 
 export const Label = styled(Text)`
@@ -17,14 +17,18 @@ export const Steps = styled.div<StepsProps>`
   margin-top: ${(props) => props.theme.spacing[1]};
 `
 
-export const Step = styled.div<{ active: true | false }>`
+interface StepProps {
+  active: 'true' | 'false' | null
+}
+
+export const Step = styled.span<StepProps>`
   height: ${(props) => props.theme.spacing[1]};
   border-radius: ${(props) => props.theme.borderRadius.px};
   background-color: ${(props) => props.theme.colors.gray600};
 
   ${(props) =>
-    props.active === true &&
-    `
-    background-color: ${props.theme.colors.gray100};
-  `}
+    props.active === 'true' &&
+    css`
+      background-color: ${props.theme.colors.gray100};
+    `}
 `

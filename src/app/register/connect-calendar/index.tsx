@@ -3,16 +3,18 @@ import { signIn, useSession } from 'next-auth/react'
 
 import { MultiStep } from '@/components/MultiStep'
 
-import { Container, Header, Text, Heading, Button } from '../styles'
+import { Container, Header, Text, Heading, Button, FormError } from '../styles'
 import { ConnectBox, ConnectItem } from './styles'
 
 import { ArrowRight, Check, GoogleLogo } from 'phosphor-react'
 import { ReactElement } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 const Calendar = () => {
-  const { status, data } = useSession()
-  console.log(status, data)
-  const isAuthenticated = status === 'authenticated'
+  const session = useSession()
+  const searchParams = useSearchParams()
+  const isAuthenticated = session.status === 'authenticated'
+  const hasAuthError = searchParams.get('error') === 'permissions'
 
   const handleSignIn = async () => {
     await signIn('google')
@@ -60,7 +62,12 @@ const Calendar = () => {
             <GetAuthenticadeStatus />
           </Button>
         </ConnectItem>
-
+        {hasAuthError && (
+          <FormError size="sm">
+            Falha ao se conectar ao Google, verifique se você habilitou as
+            permissões de acesso ao Google Calendar
+          </FormError>
+        )}
         <Button type={'submit'} disabled={!isAuthenticated}>
           Próximo passo <ArrowRight />
         </Button>
