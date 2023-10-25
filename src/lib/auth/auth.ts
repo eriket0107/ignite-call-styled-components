@@ -2,9 +2,6 @@ import { NextAuthOptions } from 'next-auth'
 import Google, { GoogleProfile } from 'next-auth/providers/google'
 import { PrismaAdapter } from '../../lib/auth/prisma-adapter'
 
-const scope =
-  'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar'
-
 export const AuthOptions: NextAuthOptions = {
   adapter: PrismaAdapter(),
   providers: [
@@ -13,7 +10,8 @@ export const AuthOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       authorization: {
         params: {
-          scope,
+          scope:
+            'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar',
         },
       },
       profile(profile: GoogleProfile) {

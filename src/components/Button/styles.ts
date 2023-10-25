@@ -13,7 +13,7 @@ export const ButtonVariant = styled.button<ButtonPropsStyles>`
   text-align: center;
   min-width: 120px;
   box-sizing: border-box;
-  padding: 0 ${(props) => props.theme.spacing[4]};
+  padding: ${(props) => props.theme.spacing[4]};
 
   display: flex;
   align-items: center;
