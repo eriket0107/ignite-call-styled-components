@@ -1,12 +1,13 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { cookies } from 'next/headers'
 
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
   const body = await req.json()
 
-  if (!body)
+  if (!body) {
     return NextResponse.json({ message: 'Body empty' }, { status: 500 })
+  }
 
   const { username, name } = body
   const { set: SetCookie } = cookies()
