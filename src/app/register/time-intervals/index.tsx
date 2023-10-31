@@ -23,6 +23,7 @@ import {
 import { ArrowRight } from 'phosphor-react'
 import { convertHourToMinutes } from '@/utils/convert-hour-to-minutes'
 import { api } from '@/lib/axios'
+import { Session } from 'next-auth'
 
 const timeIntervalsFormSchema = z.object({
   intervals: z
@@ -64,7 +65,12 @@ const timeIntervalsFormSchema = z.object({
 type TimeInvtervalsFormInput = z.input<typeof timeIntervalsFormSchema>
 type TimeInvtervalsFormOutput = z.output<typeof timeIntervalsFormSchema>
 
-const TimeIntervals = () => {
+interface TimeIntervalsProps {
+  session: Session | null
+}
+
+const TimeIntervals = ({ session }: TimeIntervalsProps) => {
+  console.log(session)
   const {
     register,
     handleSubmit,

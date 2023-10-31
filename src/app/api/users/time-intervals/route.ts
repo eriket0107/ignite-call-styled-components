@@ -22,7 +22,6 @@ export const POST = async (req: NextRequest) => {
     )
 
   const { intervals }: timeIntervalsBodySchema = await req.json()
-  console.log(intervals)
 
   await Promise.all(
     intervals.map((interval) =>
