@@ -9,7 +9,7 @@ import { z } from 'zod'
 import { api } from '@/lib/axios'
 import { AxiosError } from 'axios'
 
-import { Text as Label, TextArea } from '@ignite-ui/react'
+import { Avatar, Text as Label, TextArea } from '@ignite-ui/react'
 
 import { ArrowRight } from 'phosphor-react'
 import { Container, Header, Heading, Text } from '../styles'
@@ -26,11 +26,7 @@ const updateProfileSchema = z.object({
 
 type UpdateProfileFormData = z.infer<typeof updateProfileSchema>
 
-interface UpdateProfileProps {
-  session: Session | null
-}
-
-const UpdateProfile = ({ session }: UpdateProfileProps) => {
+const UpdateProfile = ({ session }: { session: Session }) => {
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState<boolean>(false)
   const router = useRouter()
   const {
@@ -44,12 +40,12 @@ const UpdateProfile = ({ session }: UpdateProfileProps) => {
 
   const handleUpdateProfile = async (data: UpdateProfileFormData) => {
     try {
-      await api.post('/users', {
+      await api.put('/users/profile', {
         bio: data.bio,
       })
 
       setIsSubmitSuccessful(true)
-      router.push('/updateProfile/connect-calendar')
+      router.push(`/schedule${session.user.username} `)
     } catch (err) {
       if (err instanceof AxiosError && err?.response?.data?.message) {
         alert(err?.response?.data?.message)
@@ -62,8 +58,6 @@ const UpdateProfile = ({ session }: UpdateProfileProps) => {
       console.error(err)
     }
   }
-
-  console.log(session)
 
   return (
     <Container>
@@ -81,6 +75,7 @@ const UpdateProfile = ({ session }: UpdateProfileProps) => {
       <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
         <label>
           <Text>Foto de Perfil</Text>
+          <Avatar src={session?.user?.avatar_url} alt={session?.user?.name} />
         </label>
 
         <label>

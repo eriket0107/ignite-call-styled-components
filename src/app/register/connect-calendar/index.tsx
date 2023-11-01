@@ -1,4 +1,7 @@
 'use client'
+import { ReactElement } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
+
 import { signIn, useSession } from 'next-auth/react'
 
 import { MultiStep } from '@/components/MultiStep'
@@ -7,10 +10,9 @@ import { Container, Header, Text, Heading, Button, FormError } from '../styles'
 import { ConnectBox, ConnectItem } from './styles'
 
 import { ArrowRight, Check, GoogleLogo } from 'phosphor-react'
-import { ReactElement } from 'react'
-import { useSearchParams } from 'next/navigation'
 
 const Calendar = () => {
+  const router = useRouter()
   const session = useSession()
   const searchParams = useSearchParams()
   const isAuthenticated = session.status === 'authenticated'
@@ -18,6 +20,10 @@ const Calendar = () => {
 
   const handleSignIn = async () => {
     await signIn('google')
+  }
+
+  const handleNaviteNextStep = async () => {
+    await router.push('/time-intervals')
   }
 
   const GetAuthenticadeStatus = (): ReactElement => {
@@ -68,7 +74,11 @@ const Calendar = () => {
             permissões de acesso ao Google Calendar
           </FormError>
         )}
-        <Button type={'submit'} disabled={!isAuthenticated}>
+        <Button
+          onClick={handleNaviteNextStep}
+          type={'submit'}
+          disabled={!isAuthenticated}
+        >
           Próximo passo <ArrowRight />
         </Button>
       </ConnectBox>

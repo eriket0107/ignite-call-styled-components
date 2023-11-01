@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
@@ -65,6 +66,7 @@ type TimeInvtervalsFormInput = z.input<typeof timeIntervalsFormSchema>
 type TimeInvtervalsFormOutput = z.output<typeof timeIntervalsFormSchema>
 
 const TimeIntervals = () => {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -98,6 +100,7 @@ const TimeIntervals = () => {
   const handleSetTimeIntervals = async (data: TimeInvtervalsFormOutput) => {
     const { intervals } = data
     await api.post('/users/time-intervals', { intervals })
+    await router.push('/register/update-profile')
   }
 
   return (

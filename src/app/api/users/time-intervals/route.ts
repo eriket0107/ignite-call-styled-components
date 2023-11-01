@@ -22,7 +22,6 @@ export const POST = async (req: NextRequest) => {
     )
 
   const { intervals }: timeIntervalsBodySchema = await req.json()
-  console.log(intervals)
 
   await Promise.all(
     intervals.map((interval) =>
@@ -31,7 +30,7 @@ export const POST = async (req: NextRequest) => {
           week_day: interval.weekDay,
           time_start_in_minutes: interval.startTimeInMinutes,
           time_end_in_minutes: interval.endTimeInMinutes,
-          user_id: session?.user?.id,
+          user_id: session?.user?.id as string,
         },
       }),
     ),
