@@ -1,22 +1,24 @@
 'use client'
+import { z } from 'zod'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-
+import { AxiosError } from 'axios'
+import { Session } from 'next-auth'
 import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { z } from 'zod'
 import { api } from '@/lib/axios'
-import { AxiosError } from 'axios'
 
-import { Avatar, Text as Label, TextArea } from '@ignite-ui/react'
+import { Text as Label, TextArea } from '@ignite-ui/react'
 
-import { ArrowRight } from 'phosphor-react'
-import { Container, Header, Heading, Text } from '../styles'
-import { FormAnnotation, ProfileBox } from './styles'
+import { Avatar } from '@/components/Avatar'
 import { Button } from '@/components/Button'
 import { MultiStep } from '@/components/MultiStep'
-import { Session } from 'next-auth'
+
+import { ArrowRight } from 'phosphor-react'
+
+import { Container, Header, Heading, Text } from '../styles'
+import { FormAnnotation, ProfileBox } from './styles'
 
 const updateProfileSchema = z.object({
   bio: z
@@ -75,7 +77,7 @@ const UpdateProfile = ({ session }: { session: Session }) => {
       <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
         <label>
           <Text>Foto de Perfil</Text>
-          <Avatar src={session?.user?.avatar_url} alt={session?.user?.name} />
+          <Avatar src={session.user.avatar_url} alt={session?.user?.name} />
         </label>
 
         <label>

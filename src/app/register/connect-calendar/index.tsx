@@ -23,7 +23,7 @@ const Calendar = () => {
   }
 
   const handleNaviteNextStep = async () => {
-    await router.push('/time-intervals')
+    await router.push('/register/time-intervals')
   }
 
   const GetAuthenticadeStatus = (): ReactElement => {
