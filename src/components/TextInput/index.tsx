@@ -1,4 +1,3 @@
-'use client'
 import { ReactNode, ForwardedRef, forwardRef, ComponentProps } from 'react'
 import { PrefixContainer, InputContainer, InputContent } from './styles'
 

@@ -1,4 +1,6 @@
 'use client'
+import '../lib/dayjs'
+
 import { ReactNode } from 'react'
 import { ProviderTheme } from './styles/provider'
 import { SessionProvider } from 'next-auth/react'

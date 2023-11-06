@@ -94,7 +94,7 @@ const TimeIntervals = () => {
     name: 'intervals',
   })
 
-  const weekDays = getWeekDays()
+  const weekDays = getWeekDays({})
   const intervals = watch('intervals')
 
   const handleSetTimeIntervals = async (data: TimeInvtervalsFormOutput) => {
