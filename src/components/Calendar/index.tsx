@@ -24,7 +24,12 @@ interface CalendarWeek {
 
 type CalendarWeeks = CalendarWeek[]
 
-export const Calendar = () => {
+interface CalendarProps {
+  selectedDate?: Date | null
+  onDateSelected: (date: Date) => void
+}
+
+export const Calendar = ({ onDateSelected, selectedDate }: CalendarProps) => {
   const [currentDate, setCurrentDate] = useState(() => dayjs().set('date', 1))
 
   const shortWeekDays = getWeekDays({ short: true })
@@ -78,7 +83,7 @@ export const Calendar = () => {
         return { date, disabled: true }
       }),
       ...daysInMonthArray.map((date) => {
-        return { date, disabled: false }
+        return { date, disabled: date.endOf('day').isBefore(new Date()) }
       }),
       ...nextMonthFillArray.map((date) => {
         return { date, disabled: true }
@@ -134,7 +139,10 @@ export const Calendar = () => {
             <tr key={week}>
               {days.map(({ date, disabled }) => (
                 <td key={date.toString()}>
-                  <CalendarDay disabled={disabled}>
+                  <CalendarDay
+                    onClick={() => onDateSelected(date.toDate())}
+                    disabled={disabled}
+                  >
                     {date.get('date')}
                   </CalendarDay>
                 </td>

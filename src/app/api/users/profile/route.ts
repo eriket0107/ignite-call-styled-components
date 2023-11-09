@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth'
 
-import { AuthOptions } from '@/lib/auth/auth'
+import { AUTH_OPTIONS } from '@/lib/auth/auth'
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
@@ -9,7 +9,7 @@ interface updateProfileBodySchema {
 }
 
 export const PUT = async (req: NextRequest) => {
-  const session = await getServerSession(AuthOptions)
+  const session = await getServerSession(AUTH_OPTIONS)
 
   if (!session)
     return NextResponse.json(

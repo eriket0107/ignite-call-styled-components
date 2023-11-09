@@ -49,7 +49,7 @@ export const TimePicker = styled.div`
 export const TimePickerHeader = styled(Text)`
   && {
     font-weight: 500;
-
+    text-transform: capitalize;
     > span {
       color: ${(props) => props.theme.colors.gray200};
     }

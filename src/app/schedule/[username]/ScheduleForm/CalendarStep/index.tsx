@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useState } from 'react'
 import { Calendar } from '@/components/Calendar'
 import {
   Containter,
@@ -7,18 +8,46 @@ import {
   TimePickerItem,
   TimePickerList,
 } from './styles'
+import dayjs from 'dayjs'
+import { useParams } from 'next/navigation'
+import { api } from '@/lib/axios'
 
 export const CalendarStep = () => {
-  const isDateSelected = false
+  const { username } = useParams()
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  const [availability, setAvailability] = useState(null)
+
+  const isDateSelected = !!selectedDate
+
+  const weekDay = selectedDate ? dayjs(selectedDate).format('dddd') : null
+  const describedDate = selectedDate
+    ? dayjs(selectedDate).format('DD[ de ]MMMM')
+    : null
+
+  useEffect(() => {
+    if (!selectedDate) return
+
+    api
+      .get(`/${username}/availability`, {
+        params: {
+          date: dayjs(selectedDate).format('YYYY-MM-DD'),
+        },
+      })
+      .then((res) => {
+        console.log(res.data)
+      })
+  }, [selectedDate, username])
 
   return (
     <Containter isTimePickerOpen={isDateSelected}>
-      <Calendar />
+      <Calendar selectedDate={selectedDate} onDateSelected={setSelectedDate} />
 
       {isDateSelected && (
         <TimePicker>
           <TimePickerHeader>
-            terça <span>20 de setembro</span>
+            {weekDay},
+            <br />
+            <span>{describedDate}</span>
           </TimePickerHeader>
 
           <TimePickerList>
