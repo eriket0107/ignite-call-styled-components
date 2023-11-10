@@ -28,7 +28,8 @@ export const GET = async (
   const referenceDate = dayjs(date)
   const isPastDate = referenceDate.endOf('day').isBefore(new Date())
 
-  if (isPastDate) return NextResponse.json({ availability: [] })
+  if (isPastDate)
+    return NextResponse.json({ possibleTimes: [], availability: [] })
 
   const userAvailability = await prisma.userTimeInterval.findFirst({
     where: {
@@ -37,7 +38,8 @@ export const GET = async (
     },
   })
 
-  if (!userAvailability) return NextResponse.json({ availability: [] })
+  if (!userAvailability)
+    return NextResponse.json({ possibleTimes: [], availability: [] })
 
   const { time_start_in_minutes, time_end_in_minutes } = userAvailability
 

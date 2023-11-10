@@ -34,6 +34,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.47.0",
     "styled-components": "^6.0.7",
+    "swr": "^2.2.4",
     "zod": "^3.22.4"
   }
 }
