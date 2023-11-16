@@ -18,10 +18,13 @@ interface Availability {
   availableTimes: number[]
 }
 
-export const CalendarStep = () => {
+interface CalendarStepProps {
+  onSelectDateTime: (date: Date) => void
+}
+
+export const CalendarStep = ({ onSelectDateTime }: CalendarStepProps) => {
   const { username } = useParams()
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-
   const isDateSelected = !!selectedDate
 
   const weekDay = selectedDate ? dayjs(selectedDate).format('dddd') : null
@@ -33,9 +36,9 @@ export const CalendarStep = () => {
     : null
 
   const { data: availability } = useSWR<Availability>(
-    ['availability', selectedDateWithoutTime],
+    ['availability', selectedDateWithoutTime, isDateSelected],
     async () => {
-      const response = await api.get(`/${username}/availability`, {
+      const response = await api.get(`/users/${username}/availability`, {
         params: {
           date: selectedDateWithoutTime,
         },
@@ -44,13 +47,22 @@ export const CalendarStep = () => {
       return response.data
     },
     {
-      isPaused: () => !selectedDateWithoutTime,
+      isPaused: () => !isDateSelected,
     },
   )
 
+  const handleSelectTime = (hour: number) => {
+    const dateWithTime = dayjs(selectedDate)
+      .set('hour', hour)
+      .startOf('hour')
+      .toDate()
+
+    onSelectDateTime(dateWithTime)
+  }
+
   return (
     <Containter isTimePickerOpen={isDateSelected}>
-      <Calendar selectedDate={selectedDate} onDateSelected={setSelectedDate} />
+      <Calendar onDateSelected={setSelectedDate} />
 
       {isDateSelected && (
         <TimePicker>
@@ -65,6 +77,7 @@ export const CalendarStep = () => {
               return (
                 <TimePickerItem
                   key={hour}
+                  onClick={() => handleSelectTime(hour)}
                   disabled={!availability.availableTimes.includes(hour)}
                 >
                   {String(hour).padStart(2, '0')}:00h

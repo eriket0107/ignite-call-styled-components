@@ -87,6 +87,7 @@ export const CalendarDay = styled.button`
   &:disabled {
     background: none;
     opacity: 0.4;
+    cursor: not-allowed;
   }
 
   &:not(:disabled):hover {

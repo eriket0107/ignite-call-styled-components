@@ -9,6 +9,9 @@ import { ConfirmForm, FormActions, FormError, FormHeader } from './styles'
 import { Button } from '@/components/Button'
 import { TextInput } from '@/components/TextInput'
 import { Text, TextArea } from '@ignite-ui/react'
+import dayjs from 'dayjs'
+import { api } from '@/lib/axios'
+import { useParams } from 'next/navigation'
 
 const confirmFormSchema = z.object({
   name: z.string().min(3, { message: 'O nome precisa no mínimo 3 caracteres' }),
@@ -17,8 +20,15 @@ const confirmFormSchema = z.object({
 })
 
 type ConfirmFormData = z.infer<typeof confirmFormSchema>
+interface ConfirmationStepsProps {
+  schedulingDate: Date
+  onCancelConfirmation: () => void
+}
 
-const ConfirmStep = () => {
+const ConfirmStep = ({
+  onCancelConfirmation,
+  schedulingDate,
+}: ConfirmationStepsProps) => {
   const {
     register,
     handleSubmit,
@@ -26,9 +36,25 @@ const ConfirmStep = () => {
   } = useForm<ConfirmFormData>({
     resolver: zodResolver(confirmFormSchema),
   })
+  const { username } = useParams()
+  console.log(username)
 
-  const handleConfirmScheduling = (data: ConfirmFormData) => {
-    console.log(data)
+  const describedDate = dayjs(schedulingDate).format('DD[ de ]MMMM[ de ]YYYY')
+  const describedTime = dayjs(schedulingDate).format('HH:mm[h]')
+
+  const handleConfirmScheduling = async (data: ConfirmFormData) => {
+    const { name, email, observations } = data
+    try {
+      await api.post(`/users/${username}/scheduling`, {
+        name,
+        email,
+        observations,
+        date: schedulingDate,
+      })
+      onCancelConfirmation()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -36,11 +62,11 @@ const ConfirmStep = () => {
       <FormHeader>
         <Text>
           <CalendarBlank />
-          22 de setembro 2023
+          {describedDate}
         </Text>
         <Text>
           <Clock />
-          18:00h
+          {describedTime}
         </Text>
       </FormHeader>
       <label>
@@ -68,7 +94,7 @@ const ConfirmStep = () => {
       </label>
 
       <FormActions>
-        <Button type="button" variant="tertiary">
+        <Button type="button" variant="tertiary" onClick={onCancelConfirmation}>
           Cancelar
         </Button>
         <Button type="submit" isLoading={isSubmitting}>

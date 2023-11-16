@@ -1,8 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import Schedule from '.'
 
-export const dynamicParams = true
-
 export const generateStaticParams = async () => {
   return []
 }

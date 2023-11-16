@@ -6,9 +6,9 @@ import { prisma } from '@/lib/prisma'
 
 export const GET = async (
   req: NextRequest,
-  route: { params: { username: string } },
+  { params }: { params: { username: string } },
 ) => {
-  const username = route.params.username
+  const { username } = params
 
   const date = req.nextUrl.searchParams.get('date')
 
@@ -52,7 +52,7 @@ export const GET = async (
     },
   )
 
-  const blockedTimes = await prisma.schelduling.findMany({
+  const blockedTimes = await prisma.scheduling.findMany({
     select: {
       date: true,
     },

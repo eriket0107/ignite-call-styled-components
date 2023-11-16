@@ -1,11 +1,9 @@
 import { Box, Text } from '@ignite-ui/react'
 import styled, { css } from 'styled-components'
 
-interface ContainterProps {
-  isTimePickerOpen: boolean
-}
-
-export const Containter = styled(Box)<ContainterProps>`
+export const Containter = styled(Box).withConfig({
+  shouldForwardProp: (prop) => prop !== 'isTimePickerOpen',
+})<{ isTimePickerOpen: boolean }>`
   margin: ${(props) => `${props.theme.spacing[6]} auto 0`};
   padding: 0;
   display: grid;
@@ -84,6 +82,7 @@ export const TimePickerItem = styled.button`
 
   &:disabled {
     background: none;
+    cursor: not-allowed;
   }
 
   &:not(:disabled):hover {
