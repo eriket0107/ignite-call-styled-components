@@ -46,9 +46,6 @@ export const CalendarStep = ({ onSelectDateTime }: CalendarStepProps) => {
 
       return response.data
     },
-    {
-      isPaused: () => !isDateSelected,
-    },
   )
 
   const handleSelectTime = (hour: number) => {

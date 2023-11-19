@@ -8,8 +8,18 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: 'Ignite Call',
+  title: {
+    default: 'Ignite Call',
+    template: '%s  | Ignite Call',
+    absolute: 'Bem vindo | Ignite Call',
+  },
   description: 'Schedule your tasks and compromises',
+  openGraph: {
+    type: 'website',
+    locale: 'pt_BR',
+    url: 'https://ignite-call-eriket.com.br',
+    siteName: 'Ignite Call Eriket',
+  },
 }
 
 export default function RootLayout({

@@ -10,7 +10,6 @@ import { Container, Header, Text, Heading, Button, FormError } from '../styles'
 import { ConnectBox, ConnectItem } from './styles'
 
 import { ArrowRight, Check, GoogleLogo } from 'phosphor-react'
-
 const Calendar = () => {
   const router = useRouter()
   const session = useSession()

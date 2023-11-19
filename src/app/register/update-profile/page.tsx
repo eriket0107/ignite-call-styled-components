@@ -5,6 +5,7 @@ import { User, getServerSession } from 'next-auth'
 import UpdateProfile from '.'
 import { prisma } from '@/lib/prisma'
 import { cookies } from 'next/headers'
+import { Metadata } from 'next'
 
 const getSessionData = async () => {
   const getSessionToken = cookies().get('next-auth.session-token')?.value
@@ -17,6 +18,14 @@ const getSessionData = async () => {
     user: sessionUser?.user as User,
     expires: String(sessionExpires?.expires),
   }
+}
+
+export const metadata: Metadata = {
+  title: 'Atualize seu perfil',
+  robots: {
+    follow: false,
+    index: false,
+  },
 }
 
 const UpdateProfilePage = async () => {

@@ -37,7 +37,6 @@ const ConfirmStep = ({
     resolver: zodResolver(confirmFormSchema),
   })
   const { username } = useParams()
-  console.log(username)
 
   const describedDate = dayjs(schedulingDate).format('DD[ de ]MMMM[ de ]YYYY')
   const describedTime = dayjs(schedulingDate).format('HH:mm[h]')

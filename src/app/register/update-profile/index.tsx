@@ -63,6 +63,7 @@ const UpdateProfile = ({ session }: { session: Session }) => {
 
   return (
     <Container>
+      {/* <NextSeo title="Atualize seu perfil | Ignite call Eriket" noindex /> */}
       <Header>
         <Heading as="strong" size={'2xl'}>
           Bem-vindo ao Ignite Call!

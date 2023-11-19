@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import Schedule from '.'
+import { Metadata } from 'next'
 
 export const generateStaticParams = async () => {
   return []
@@ -22,6 +23,18 @@ const getUser = async ({ username }: { username: string }) => {
     name: user.name as string,
     bio: user.bio as string,
     avatarUrl: user.avatar_url as string,
+  }
+}
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { username: string }
+}): Promise<Metadata> => {
+  const user = await getUser(params)
+
+  return {
+    title: `Agende com ${user.name}`,
   }
 }
 

@@ -84,6 +84,7 @@ const Register = () => {
 
   return (
     <Container>
+      {/* <NextSeo title="Crie uma conta | Ignite call Eriket" /> */}
       <Header>
         <Heading as="strong" size={'2xl'}>
           Bem-vindo ao Ignite Call!

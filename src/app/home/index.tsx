@@ -7,6 +7,12 @@ import Image from 'next/image'
 import calendar from '@/assets/app-preview.png'
 import ClaimUsernameForm from './components/ClaimUsernameForm'
 
+import { Metadata } from 'next'
+export const metadata: Metadata = {
+  title: 'Descomplique a sua agenda | Ignite call Eriket',
+  description: 'Schedule your tasks and compromises',
+}
+
 const Home = () => {
   return (
     <Container>
